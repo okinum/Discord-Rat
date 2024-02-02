@@ -6,7 +6,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5F75A017-90D1-4832-AF95-2EFA21336DC8}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>Discord_Main</RootNamespace>
     <AssemblyName>Discord_Main</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
