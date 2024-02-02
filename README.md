@@ -2,7 +2,6 @@
 A simple discord rat. Made in c#.
 
 # Disclaimer!!!
-* This project isn't ready for use!!!
 * this tool is for educational use only, the author will not be held responsible for any misuse of this tool.
 
 # Commands
@@ -20,14 +19,19 @@ A simple discord rat. Made in c#.
 * !Gettoken Get discord token.
 * !Mousepos(x position, y position) Set mouse position.
 * !Download_from_url(url, filename) Downloads a file from url to computer.
+* !Set_Group(channel) Sets the group of the computer. Max groups are 1.
+* !Remove_Group Remove group from computer.
+* !Get_Group Gets the group this computer is in.
+* !PingIp(ip, data) Ping a url/server/ip.
+* !Website(url) Open Website.
+* !Clipboard Get clipboard.
+* !Set_Clipboard(Text) Set clipboard.
 * !Exit Close the rat.
 
 # Todo
 * Rat Builder
 * kill process
 * wallpaper
-* open website
-* clipboard
 * delete
 * startup
 * disable defender
