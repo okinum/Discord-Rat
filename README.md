@@ -26,6 +26,8 @@ A simple discord rat. Made in c#.
 * !Website(url) Open Website.
 * !Clipboard Get clipboard.
 * !Set_Clipboard(Text) Set clipboard.
+* !Click click.
+* !Write(Text) write words.
 * !Exit Close the rat.
 
 # Todo
