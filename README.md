@@ -38,7 +38,6 @@ A simple discord rat. Made in c#.
 * disable taskmanager
 * Plugins
 * Webcam pic
-* Mass dm (with their token)
 * Host website
 
 # How to Setup
