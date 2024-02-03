@@ -1,4 +1,4 @@
-# Discord-Rat
+# Discord Rat
 A simple discord rat. Made in c#.
 
 # Disclaimer!!!
