@@ -37,6 +37,9 @@ namespace Discord_Main
 
         public async Task Main()
         {
+
+            Globals.Guild = Convert.ToUInt64(Globals.TempGuild);
+
             var cfg = new ConfigParser(appConfig);
             Global_Basic.Made_Channel = Convert.ToUInt64(cfg.GetValue("CONFIG", "Made_Channel"));
             Global_Basic.VoiceChat = Convert.ToUInt64(cfg.GetValue("CONFIG", "VoiceChat"));
