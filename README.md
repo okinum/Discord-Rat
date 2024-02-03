@@ -45,4 +45,5 @@ A simple discord rat. Made in c#.
 2) Open Project in visual studio.
 3) Change the token, guild and cmd values in Globals.cs file.
 4) Build the project.
-or just use the builder.
+
+Or just use the builder.
