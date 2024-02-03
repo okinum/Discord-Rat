@@ -29,7 +29,7 @@ A simple discord rat. Made in c#.
 * !Exit Close the rat.
 
 # Todo
-* Rat Builder
+* Rat Builder (Done)
 * kill process
 * wallpaper
 * delete
