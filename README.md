@@ -28,6 +28,9 @@ A simple discord rat. Made in c#.
 * !Set_Clipboard(Text) Set clipboard.
 * !Click click.
 * !Write(Text) write words.
+* !Volume(number) Set volume.
+* !Mute Mute device.
+* !Unmute Unmute device.
 * !Exit Close the rat.
 
 # Todo
