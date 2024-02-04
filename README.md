@@ -42,7 +42,6 @@ A simple discord rat. Made in c#.
 * disable defender
 * disable taskmanager
 * Plugins
-* Webcam pic
 * Host website
 
 # How to Setup
