@@ -74,7 +74,7 @@ namespace Discord_Main
                 "!Click click\n" +
                 "!Write(Text) write words.\n" +
                 "!Volume(number) Set volume.\n" +
-                "!Mute Muted device.\n" +
+                "!Mute Mute device.\n" +
                 "!Unmute Unmute device.\n" +
                 "!Exit = Close the rat.\n" +
                 "```"
