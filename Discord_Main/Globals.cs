@@ -12,8 +12,8 @@ namespace Discord_Main
         public static string TempGuild = "0"; // do not change
         public static ulong Guild = 6969; // << Discord Guild/Server id
         public static ulong Cmd = 420; // << Discord Cmd Channel (you can put random channel here in your server)
-
     }
+
     class Global_Basic
     {
         public static ulong Made_Channel = 0; // Do not touch these v
